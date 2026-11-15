@@ -1,0 +1,479 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body><title>Eloy Lagar Jaime</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Portfolio de Eloy Lagar Jaime, desarrollador full-stack: GeSoma y Gespatiens.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Outfit:wght@400&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: una ficha por proyecto. Cada caso abre con una banda en la paleta del propio producto
+   (GeSoma oscuro y verde; Gespatiens en Carbon, blanco y azul) sobre una base neutra y fría. */
+:root {
+  --paper: #f2f4f6;
+  --sheet: #ffffff;
+  --ink: #12161c;
+  --muted: #566070;
+  --line: #d8dde4;
+  --chip: #e7eaee;
+  --gs-bg: #0b0d10;
+  --gs-ink: #f1f1df;
+  --gs-muted: #9aa3a0;
+  --gs-accent: #2fdba3;
+  --gp-bg: #ffffff;
+  --gp-ink: #161616;
+  --gp-muted: #525252;
+  --gp-accent: #0f62fe;
+  --gp-side: #f4f4f4;
+  --gp-brand: #004f84;
+  --gp-aqua: #00e1b4;
+  --gp-brand-ink: #d1e2ed;
+  --gp-mini-ges: #00866b;
+  --gp-mini-patiens: #004f84;
+  --font-display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: clamp(1.9rem, 4vw, 2.6rem);
+  --step-4: clamp(2.6rem, 8vw, 5.4rem);
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1216; --sheet: #161a20; --ink: #e7eaee; --muted: #9aa3af; --line: #29303a; --chip: #212730;
+    --gp-bg: #161616; --gp-ink: #f4f4f4; --gp-muted: #c6c6c6; --gp-accent: #78a9ff; --gp-side: #262626; --gp-mini-ges: #00e1b4; --gp-mini-patiens: #d1e2ed;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1216; --sheet: #161a20; --ink: #e7eaee; --muted: #9aa3af; --line: #29303a; --chip: #212730;
+  --gp-bg: #161616; --gp-ink: #f4f4f4; --gp-muted: #c6c6c6; --gp-accent: #78a9ff; --gp-side: #262626; --gp-mini-ges: #00e1b4; --gp-mini-patiens: #d1e2ed;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.08; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+a { color: inherit; text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; border-radius: 4px; }
+.mono { font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: 0.01em; }
+.label { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+/* ───────── cabecera ───────── */
+.hero { padding-block: clamp(40px, 8vw, 88px) 40px; display: grid; gap: 28px; }
+.hero h1 { font-size: var(--step-4); font-weight: 800; letter-spacing: -0.035em; }
+.hero h1 span { display: block; color: var(--muted); font-weight: 700; }
+.lede { font-size: var(--step-1); max-width: 40ch; line-height: 1.45; }
+.contacto { display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; }
+.contacto a, .correo { font-family: var(--font-mono); font-size: 0.9rem; }
+.correo { display: inline-flex; align-items: center; gap: 8px; }
+.correo code { font-family: inherit; user-select: all; }
+.copiar {
+  font: 500 0.75rem var(--font-mono); letter-spacing: 0.04em;
+  border: 1px solid var(--line); background: var(--sheet); color: var(--ink);
+  border-radius: 999px; padding: 4px 10px; cursor: pointer;
+}
+.datos { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+.datos div { padding: 14px 16px 14px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+.datos dt { margin-bottom: 4px; }
+.datos dd { margin: 0; font-weight: 500; }
+
+.niveles { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px 28px; }
+.niveles > h2 { grid-column: 1 / -1; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 400; }
+.nivel { display: grid; gap: 6px; align-content: start; min-width: 0; }
+.nivel h3 { font-size: var(--step-1); font-weight: 700; letter-spacing: -0.01em; }
+.nivel p { color: var(--muted); font-size: var(--step--1); }
+.nivel .stack { margin-top: 4px; }
+.nivel:first-of-type .stack li { background: var(--ink); color: var(--paper); }
+
+.indice { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; padding-bottom: 56px; }
+.indice a {
+  display: grid; gap: 6px; padding: 20px; border-radius: var(--radius); text-decoration: none;
+  border: 1px solid var(--line); background: var(--sheet); transition: transform .2s ease, border-color .2s ease;
+}
+.indice a:hover { transform: translateY(-2px); border-color: var(--ink); }
+.indice strong { font: 700 var(--step-2) var(--font-display); letter-spacing: -0.02em; }
+.indice .mono { color: var(--muted); }
+
+/* ───────── caso de estudio ───────── */
+.caso { padding-bottom: 72px; }
+.banda { padding-block: clamp(36px, 6vw, 64px); overflow: hidden; }
+.banda .wrap { display: grid; gap: 28px; }
+.cab { display: grid; gap: 14px; max-width: 760px; }
+.cab h2 { font-size: var(--step-4); font-weight: 800; letter-spacing: -0.04em; }
+.cab .resumen { font-size: var(--step-1); line-height: 1.45; }
+.ficha { display: flex; flex-wrap: wrap; gap: 8px 28px; }
+.ficha div { display: grid; gap: 2px; }
+
+.gs { background: var(--gs-bg); color: var(--gs-ink); }
+.gs .label, .gs .resumen-sec { color: var(--gs-muted); }
+.gs .acento { color: var(--gs-accent); }
+/* Gespatiens: la banda en el azul de su cabecera y el logotipo en negativo, como en la app */
+.gp { background: var(--gp-brand); color: #ffffff; }
+.gp .label { color: var(--gp-brand-ink); }
+.gp figcaption { color: var(--gp-brand-ink); }
+.gp .navegador { border-color: rgba(255, 255, 255, 0.18); }
+.wordmark { font-family: "Outfit", var(--font-body); font-weight: 400; letter-spacing: -0.01em; white-space: nowrap; }
+.wordmark__ges { color: var(--gp-aqua); }
+.wordmark__patiens { color: #ffffff; }
+.cab h2.wordmark { font-weight: 400; letter-spacing: -0.02em; line-height: 1; }
+.indice .wordmark.mini { font: 400 var(--step-2) "Outfit", var(--font-body); }
+.indice .wordmark.mini .wordmark__ges { color: var(--gp-mini-ges); }
+.indice .wordmark.mini .wordmark__patiens { color: var(--gp-mini-patiens); }
+.titulo-logo { line-height: 0; }
+.rotulo { display: block; height: clamp(2.4rem, 7vw, 4.6rem); width: auto; max-width: 100%; }
+.rotulo--mini { height: 1.55rem; }
+.mini-gs .rotulo path:first-child { fill: var(--ink); }
+.mini-gs .rotulo path:last-child { fill: #13b88a; }
+
+.tira { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(170px, 1fr); gap: 14px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
+.movil {
+  margin: 0; border-radius: 22px; overflow: hidden; background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.12); aspect-ratio: 585 / 1266; max-width: 100%;
+}
+.movil img, .navegador img { display: block; width: 100%; height: auto; }
+figure { margin: 0; }
+figcaption { margin-top: 8px; font-size: var(--step--1); }
+.gs figcaption { color: var(--gs-muted); }
+
+.escritorio { display: grid; grid-template-columns: 1.6fr 1fr; gap: 16px; align-items: start; }
+.escritorio .lado { display: grid; gap: 16px; }
+.navegador { border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: var(--gp-side); }
+.navegador .barra { display: flex; gap: 6px; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+.navegador .barra i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+
+.cuerpo { display: grid; gap: 44px; padding-top: 44px; }
+.tres { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; }
+.tres h3, .bloque h3 { font-size: var(--step-1); font-weight: 700; margin-bottom: 8px; letter-spacing: -0.01em; }
+.tres p, .bloque p { color: var(--muted); max-width: 62ch; }
+.bloque { display: grid; gap: 18px; }
+.bloque > h3 { font-size: var(--step-2); }
+
+.retos { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.reto { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 8px 32px; padding-block: 20px; border-bottom: 1px solid var(--line); }
+.reto h4 { margin: 0; font: 700 var(--step-1) var(--font-display); letter-spacing: -0.01em; }
+.reto p { color: var(--muted); }
+.reto p strong { color: var(--ink); font-weight: 600; }
+
+.adr { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0 32px; }
+.adr li { display: grid; grid-template-columns: 3.4em minmax(0, 1fr); gap: 12px; padding-block: 12px; border-bottom: 1px solid var(--line); }
+.adr .mono { color: var(--muted); padding-top: 2px; }
+.adr b { font-weight: 600; }
+.adr span { color: var(--muted); }
+
+.antes-despues { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+.tabla { overflow-x: auto; }
+.antes-despues th, .antes-despues td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--line); }
+.antes-despues th { font: 500 0.75rem var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.antes-despues td:first-child { color: var(--muted); width: 42%; }
+
+.cifras { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.cifras div { background: var(--sheet); padding: 18px; display: grid; gap: 4px; }
+.cifras b { font: 800 var(--step-3) var(--font-display); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.cifras span { color: var(--muted); font-size: var(--step--1); }
+
+.stack { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.stack li { font: 500 0.8rem var(--font-mono); background: var(--chip); border-radius: 6px; padding: 4px 9px; }
+
+.enlaces { display: flex; flex-wrap: wrap; gap: 10px 28px; }
+.enlaces a { font-weight: 600; }
+.enlaces .mono { color: var(--muted); }
+
+/* ───────── método y pie ───────── */
+.metodo { padding-block: 24px 72px; display: grid; gap: 28px; }
+.metodo h2 { font-size: var(--step-3); font-weight: 800; letter-spacing: -0.03em; }
+.pie { border-top: 1px solid var(--line); padding-block: 40px 56px; display: grid; gap: 18px; }
+.pie h2 { font-size: var(--step-3); font-weight: 800; letter-spacing: -0.03em; }
+
+@media (max-width: 720px) {
+  .escritorio { grid-template-columns: 1fr; }
+  .reto { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { .indice a { transition: none; } .indice a:hover { transform: none; } }
+
+/* ───────── PDF (A4) ───────── */
+@page { size: A4; margin: 12mm 12mm 14mm; }
+@media print {
+  :root { --paper: #ffffff; --sheet: #ffffff; --ink: #12161c; --muted: #4c5563; --line: #d8dde4; --chip: #eceff3;
+    --gp-bg: #ffffff; --gp-ink: #161616; --gp-muted: #525252; --gp-accent: #0f62fe; --gp-side: #f4f4f4; color-scheme: light; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-size: 10.5pt; line-height: 1.5; }
+  .wrap { max-width: none; padding-left: 0; padding-right: 0; }
+  .copiar, .indice { display: none; }
+  .niveles { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px 16px; }
+  .hero { padding-block: 0 18px; gap: 16px; }
+  .hero h1 { font-size: 40pt; }
+  .caso { break-before: page; padding-bottom: 0; }
+  #gespatiens { break-before: auto; margin-top: 8px; }
+  .tres { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .cifras { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .banda { padding: 22px 18px; border-radius: 12px; break-inside: avoid; }
+  .cab h2 { font-size: 34pt; }
+  .tira { grid-auto-flow: row; grid-template-columns: repeat(4, 1fr); overflow: visible; }
+  .tira figure:nth-child(n+5) { display: none; }
+  .escritorio .lado figure:nth-child(n+2) { display: none; }
+  .cuerpo { gap: 22px; padding-top: 22px; }
+  .reto, .adr li, .cifras, figure, .antes-despues tr, .tres > div { break-inside: avoid; }
+  .bloque > h3 { break-after: avoid; }
+  .metodo { padding-block: 28px 18px; break-inside: avoid; }
+  .pie { padding-block: 18px 0; break-inside: avoid; }
+  a { text-decoration: none; }
+}
+</style>
+
+<header class="wrap hero">
+  <p class="label">Portfolio · desarrollador web</p>
+  <h1>Eloy Lagar Jaime<span>Software para problemas reales.</span></h1>
+  <p class="lede">Me formé en DAW y mi base es PHP con Laravel. Ahora construyo aplicaciones completas con Claude Code: yo pongo la idea, los requisitos y la dirección, y reviso y pruebo el código que escribe. Aquí van dos proyectos hechos así.</p>
+  <div class="contacto">
+    <a href="https://github.com/EloyLagar" target="_blank" rel="noopener">github.com/EloyLagar</a>
+    <span class="correo"><code id="email">eloylagarjaime@gmail.com</code><button class="copiar" type="button" id="copiar-email" data-copiar="email">Copiar</button></span>
+  </div>
+  <dl class="datos">
+    <div><dt class="label">Formación</dt><dd>Técnico Superior en DAW · IES Serpis, 2023-24</dd></div>
+  </dl>
+  <section class="niveles" aria-labelledby="t-niveles">
+    <h2 id="t-niveles" class="label">Qué sé y cómo</h2>
+    <div class="nivel"><h3>Dominio</h3><p>Lo que más he trabajado por mi cuenta.</p><ul class="stack"><li>PHP</li><li>Laravel</li></ul></div>
+    <div class="nivel"><h3>Uso sin IA</h3><p>Lo he usado programando yo.</p><ul class="stack"><li>Angular</li><li>Java (DAW)</li><li>SQL · MySQL</li><li>HTML · CSS · JavaScript</li><li>Git · GitHub</li></ul></div>
+    <div class="nivel"><h3>Con IA</h3><p>He construido con ello usando Claude Code.</p><ul class="stack"><li>Spring Boot</li><li>PostgreSQL</li><li>React</li><li>Next.js</li><li>Supabase</li><li>Docker</li><li>JUnit · Vitest · Playwright</li></ul></div>
+    <div class="nivel"><h3>Nociones</h3><p>Lo leo y lo entiendo a nivel básico.</p><ul class="stack"><li>TypeScript</li></ul></div>
+  </section>
+</header>
+
+<nav class="wrap indice" aria-label="Proyectos">
+  <a href="#gespatiens"><span class="label">Caso 1 · Spring Boot + React</span><strong class="wordmark mini"><span class="wordmark__ges">ges</span><span class="wordmark__patiens">patiens</span></strong><span class="mono">Mi TFG, rehecho con arquitectura hexagonal y DDD</span></a>
+  <a href="#gesoma"><span class="label">Caso 2 · Next.js + Supabase</span><strong class="mini-gs"><svg class="rotulo rotulo--mini" viewBox="127 180 1895 284" role="img" aria-label="GeSoma"><path d="M 269 181.10 C 255.93 182.57, 240.92 185.95, 227.25 190.50 C 172.02 208.90, 136.69 248.24, 128.47 300.50 C 126.37 313.82, 126.92 340.99, 129.54 353 C 144.92 423.63, 202.36 464, 287.50 464 C 366.15 464, 426.29 426.94, 443.33 367.98 C 447.96 351.97, 449.11 341.44, 448.79 318 L 448.50 296.50 365.25 296.24 L 282 295.98 282 326.49 L 282 357 309.50 357 C 340.91 357, 340.30 356.78, 332.20 364.89 C 312.99 384.10, 270.94 385.19, 248.17 367.07 C 224.14 347.95, 221.58 303.81, 243.10 279.67 C 264.13 256.08, 309.02 253.02, 331.93 273.63 L 337.09 278.27 355.29 277.56 C 375.13 276.78, 389.85 275.28, 414.50 271.53 C 423.30 270.19, 432.63 268.79, 435.25 268.43 C 441.01 267.63, 441.02 267.57, 436.36 255.92 C 419.99 215.02, 374.78 186.86, 316.14 181.03 C 304.17 179.84, 279.89 179.87, 269 181.10 M 465 322 L 465 456 581 456 L 697 456 697 416.50 L 697 377 632 377 L 567 377 567 365 L 567 353 623.50 353 L 680 353 680 319 L 680 285 623.50 285 L 567 285 567 273.50 L 567 262.01 631.75 261.75 L 696.50 261.50 696.76 224.75 L 697.02 188 581.01 188 L 465 188 465 322" fill="var(--gs-ink)" fill-rule="evenodd"/><path d="M 1121 181.61 C 1065.86 189.01, 1019.99 218.75, 1000.41 259.79 C 991.45 278.56, 988.05 293.28, 987.31 316.50 C 986.41 344.83, 989.58 361.96, 999.56 382.87 C 1024.26 434.57, 1078.11 464, 1148.02 464 C 1224.49 464, 1284.63 427.06, 1305.28 367.43 C 1311.24 350.19, 1312.50 341.95, 1312.48 320 C 1312.47 297.40, 1310.66 286.74, 1303.91 269.50 C 1287.07 226.48, 1246.50 195.11, 1193.50 184.10 C 1173.04 179.85, 1142.05 178.78, 1121 181.61 M 799.43 185.97 C 741.11 192.19, 703.96 233.60, 712.39 283 C 717.87 315.17, 744.03 336.16, 789.62 344.98 C 800.67 347.11, 833.54 351.27, 849 352.48 C 866.46 353.85, 874.20 357.85, 874.20 365.53 C 874.20 368.21, 873.46 369.98, 871.57 371.87 L 868.95 374.50 791.47 374.76 L 714 375.03 714 415.43 L 714 455.84 720.25 456.49 C 723.68 456.86, 764.52 456.96, 811 456.72 C 903.58 456.25, 901.76 456.36, 920.38 450.04 C 935.09 445.05, 948.49 436.70, 957.53 426.88 C 984.97 397.07, 987.10 347.36, 962.19 318.11 C 949.16 302.80, 927.76 292.45, 899 287.54 C 894.32 286.74, 877.22 284.92, 861 283.49 C 826.51 280.47, 822.00 279.71, 817.99 276.33 C 813.09 272.21, 814.13 265.53, 820.16 262.41 C 822.92 260.98, 830.92 260.82, 894.63 260.94 L 966 261.08 966 224.18 L 966 187.29 953.75 186.66 C 933.38 185.61, 808.08 185.05, 799.43 185.97 M 1326.24 322.25 L 1326.50 456.50 1378.50 456.50 L 1430.50 456.50 1431 394.25 L 1431.50 332.00 1439.62 346.75 C 1444.08 354.86, 1458.91 382.65, 1472.56 408.50 C 1486.21 434.35, 1497.86 455.84, 1498.44 456.26 C 1499.02 456.68, 1503.46 456.95, 1508.30 456.87 L 1517.11 456.73 1522.46 446.08 C 1533.29 424.48, 1583.07 333.00, 1584 333 C 1584.27 333, 1584.50 360.78, 1584.50 394.75 L 1584.50 456.50 1636 456.50 L 1687.50 456.50 1687.75 322.25 L 1688.00 188 1626.75 188.01 L 1565.50 188.02 1562.10 194.26 C 1558.27 201.29, 1531.68 248.81, 1517.30 274.31 L 1507.83 291.12 1496.33 270.31 C 1490.00 258.86, 1477.18 235.66, 1467.82 218.75 L 1450.81 188 1388.40 188 L 1325.99 188 1326.24 322.25 M 1786.76 195.75 C 1747.33 308.79, 1735.99 340.99, 1724.32 373 C 1707.90 418.05, 1694.97 455.31, 1695.57 455.90 C 1696.72 457.05, 1801.26 457.13, 1802.41 455.98 C 1803.01 455.39, 1806.21 446.48, 1809.53 436.20 L 1815.55 417.50 1856.41 417.50 L 1897.26 417.50 1903.40 437 L 1909.53 456.50 1965.27 456.64 C 1995.92 456.73, 2021.17 456.50, 2021.38 456.14 C 2021.60 455.79, 2015.96 439.52, 2008.86 420 C 2001.77 400.47, 1987.21 359.75, 1976.53 329.50 C 1965.84 299.25, 1952.53 261.67, 1946.95 246 C 1941.37 230.32, 1934.48 210.86, 1931.65 202.75 L 1926.50 188.01 1857.98 188.00 L 1789.46 188 1786.76 195.75 M 1138.97 265.99 C 1130.96 267.26, 1121.33 271.01, 1114.62 275.46 C 1088.37 292.88, 1084.53 335.93, 1107.23 358.33 C 1127.22 378.06, 1164.74 379.42, 1187.60 361.24 C 1210.34 343.15, 1211.79 303.09, 1190.50 281.40 C 1178.49 269.17, 1157.85 263.00, 1138.97 265.99 M 1847.13 317.75 C 1842.07 333.01, 1837.95 345.83, 1837.97 346.25 C 1838.02 347.70, 1875.01 347.13, 1875.57 345.67 C 1875.84 344.95, 1872.18 333.13, 1867.43 319.42 C 1862.68 305.71, 1858.56 293.48, 1858.28 292.25 C 1857.99 291.01, 1857.44 290, 1857.04 290 C 1856.64 290, 1852.18 302.48, 1847.13 317.75" fill="var(--gs-accent)" fill-rule="evenodd"/></svg></strong><span class="mono">PWA offline de entreno y nutrición, conectada a Claude</span></a>
+</nav>
+
+<!-- ═════════════ GESPATIENS ═════════════ -->
+<article class="caso" id="gespatiens" aria-labelledby="t-gp">
+  <div class="banda gp">
+    <div class="wrap">
+      <div class="cab">
+        <p class="label">Caso 1 · 2024 → 2026</p>
+        <h2 id="t-gp" class="wordmark" aria-label="Gespatiens"><span class="wordmark__ges" aria-hidden="true">ges</span><span class="wordmark__patiens" aria-hidden="true">patiens</span></h2>
+        <p class="resumen">La documentación diaria de una comunidad terapéutica de tratamiento de adicciones: diario por turnos, actividades y notas, intervenciones de los tutores e informes de seguimiento en PDF. Pensada para todo el equipo del centro, de administración a psicología.</p>
+        <div class="ficha">
+          <div><span class="label">Rol</span><span>Requisitos y dirección; código escrito con Claude Code, que reviso y pruebo</span></div>
+          <div><span class="label">Origen</span><span>Mi TFG de DAW en Laravel (2024), reescrito en 2026</span></div>
+          <div><span class="label">Estado</span><span>Demo pública, coste 0 €</span></div>
+        </div>
+      </div>
+      <div class="escritorio">
+        <figure>
+          <div class="navegador"><div class="barra"><i></i><i></i><i></i></div><img src="img/gp-diario.webp" width="1200" height="750" alt="Diario del centro: tres turnos con sus notas y las actividades del día con asistencia y valoraciones medias"></div>
+          <figcaption>Diario del centro: turnos, rebajas y actividades con sus medias.</figcaption>
+        </figure>
+        <div class="lado">
+          <figure>
+            <div class="navegador"><div class="barra"><i></i><i></i><i></i></div><img src="img/gp-informe.webp" width="1200" height="750" alt="Informe de media estancia con la cabecera del residente y los apartados del área social"></div>
+            <figcaption>Informe de media estancia, redactado por áreas y exportable a PDF.</figcaption>
+          </figure>
+          <figure>
+            <div class="navegador"><div class="barra"><i></i><i></i><i></i></div><img src="img/gp-panel-oscuro.webp" width="1200" height="750" alt="Panel de control en tema oscuro: plazas ocupadas, informes en elaboración y vencimientos"></div>
+            <figcaption>Panel de control en tema oscuro.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap cuerpo">
+    <div class="tres">
+      <div><h3>El punto de partida</h3><p>En 2024 lo entregué como TFG en Laravel. La idea vino de un familiar que trabaja de educador social en el centro: la información de los residentes estaba repartida entre herramientas que no encajaban.</p></div>
+      <div><h3>El objetivo de rehacerlo</h3><p>Aprender arquitectura hexagonal, DDD y SOLID sobre un dominio que conozco y aprender a trabajar con IA (Claude Code) como se haría en un equipo profesional.</p></div>
+      <div><h3>El resultado</h3><p>Una reescritura completa en Spring Boot y React en tres semanas: 10 módulos, decisiones documentadas en 10 ADR, más de 500 tests y una demo en producción que no cuesta nada mantener.</p></div>
+    </div>
+
+    <section class="bloque" aria-labelledby="t-gp-diag">
+      <h3 id="t-gp-diag">Primero, el diagnóstico del código original</h3>
+      <p>Antes de reescribir, se analizó la versión de 2024 frente a hexagonal, DDD y SOLID. Estos son algunos de los hallazgos y cómo quedaron:</p>
+      <div class="tabla">
+        <table class="antes-despues">
+          <thead><tr><th scope="col">Laravel, 2024</th><th scope="col">Spring Boot, 2026</th></tr></thead>
+          <tbody>
+            <tr><td>Controladores que validan, aplican reglas de negocio y llaman a Eloquent en el mismo método.</td><td>Cada módulo con capas <span class="mono">domain</span>, <span class="mono">application</span> e <span class="mono">infrastructure</span>; un caso de uso por acción.</td></tr>
+            <tr><td>La regla de las 32 plazas del centro, copiada en dos métodos.</td><td>Vive una sola vez en el agregado, que no se puede crear en un estado inválido.</td></tr>
+            <tr><td>Cero interfaces: DomPDF y el correo llamados desde controladores y observers.</td><td>Puertos en el dominio y adaptadores en infraestructura. Los casos de uso no conocen Spring.</td></tr>
+            <tr><td>Especialidades y tipos de actividad como arrays repetidos en varios controladores.</td><td>Un único concepto de dominio; los permisos por especialidad, centralizados.</td></tr>
+            <tr><td>Contraseña inicial deducible a partir del nombre del empleado.</td><td>JWT sin sesión, bloqueo tras 5 intentos y registro de accesos según el ENS.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="bloque" aria-labelledby="t-gp-adr">
+      <h3 id="t-gp-adr">Decisiones de arquitectura (ADR)</h3>
+      <p>Cada decisión importante está escrita con su contexto, las alternativas y lo que cuesta.</p>
+      <ol class="adr">
+        <li><span class="mono">0001</span><p><b>Hexagonal por módulos.</b> <span>Las reglas se encuentran, se cambian y se prueban en un solo sitio.</span></p></li>
+        <li><span class="mono">0002</span><p><b>Agregados con métodos de fábrica.</b> <span>Un agregado inválido no puede existir.</span></p></li>
+        <li><span class="mono">0003</span><p><b>Identificadores generados en el dominio.</b> <span>Identidad desde la creación y URLs no adivinables.</span></p></li>
+        <li><span class="mono">0004</span><p><b>Casos de uso sin Spring.</b> <span>Tests unitarios de milisegundos y configuración en un solo lugar.</span></p></li>
+        <li><span class="mono">0005</span><p><b>Esquema con Flyway.</b> <span>El mismo esquema versionado en desarrollo, tests, CI y demo.</span></p></li>
+        <li><span class="mono">0006</span><p><b>JWT sin sesión y bloqueo.</b> <span>API sin estado y sin CSRF; el usuario se recarga en cada petición.</span></p></li>
+        <li><span class="mono">0007</span><p><b>Carbon, WCAG e idiomas.</b> <span>Accesibilidad e i18n desde el principio, porque después cuestan mucho más.</span></p></li>
+        <li><span class="mono">0008</span><p><b>Despliegue gratuito.</b> <span>Vercel, Render y Neon: demo en producción a 0 €.</span></p></li>
+        <li><span class="mono">0009</span><p><b>Eventos entre módulos.</b> <span>Ingresar a un residente crea sus informes sin acoplar los módulos.</span></p></li>
+        <li><span class="mono">0010</span><p><b>Registro de accesos.</b> <span>Cada intento de entrar, con resultado, IP y navegador, como pide el ENS.</span></p></li>
+      </ol>
+    </section>
+
+    <section class="bloque" aria-labelledby="t-gp-cal">
+      <h3 id="t-gp-cal">Calidad que se comprueba sola</h3>
+      <div class="cifras">
+        <div><b>420</b><span>tests de backend, con PostgreSQL real en CI</span></div>
+        <div><b>~105</b><span>tests de frontend (Vitest)</span></div>
+        <div><b>12</b><span>tests e2e (Playwright + axe)</span></div>
+        <div><b>100</b><span>en accesibilidad (Lighthouse), obligatorio para pasar el CI</span></div>
+        <div><b>175</b><span>commits entre el 14 oct y el 3 nov de 2026</span></div>
+        <div><b>27</b><span>migraciones Flyway</span></div>
+      </div>
+      <p>WCAG 2.1 AA, tema claro y oscuro, castellano e inglés, y una revisión de cada pantalla con axe en claro, oscuro y móvil.</p>
+    </section>
+
+    <section class="bloque" aria-labelledby="t-gp-stack">
+      <h3 id="t-gp-stack">Stack</h3>
+      <ul class="stack">
+        <li>Java 25</li><li>Spring Boot 4</li><li>Spring Security · JWT</li><li>Spring Data JPA</li><li>PostgreSQL 17</li><li>Flyway</li><li>OpenPDF</li>
+        <li>React 19</li><li>TypeScript</li><li>Vite</li><li>Carbon Design System</li><li>i18next</li>
+        <li>JUnit</li><li>Vitest</li><li>Playwright</li><li>Lighthouse CI</li><li>Docker</li><li>GitHub Actions</li><li>Vercel · Render · Neon</li>
+      </ul>
+    </section>
+
+    <div class="enlaces">
+      <a href="https://gespatiens-2026.vercel.app" target="_blank" rel="noopener">Probar la demo</a>
+      <a href="https://github.com/EloyLagar/gespatiens-2026" target="_blank" rel="noopener">Código en GitHub</a>
+      <a href="https://eloylagar.github.io/gespatiens-2026/" target="_blank" rel="noopener">Informes de cobertura y Lighthouse</a>
+      <span class="mono">Demo con datos ficticios: se entra con un clic en cualquier perfil. La primera carga puede tardar un minuto.</span>
+    </div>
+  </div>
+</article>
+
+<!-- ═════════════ GESOMA ═════════════ -->
+<article class="caso" id="gesoma" aria-labelledby="t-gs">
+  <div class="banda gs">
+    <div class="wrap">
+      <div class="cab">
+        <p class="label">Caso 2 · 2026</p>
+        <h2 id="t-gs" class="titulo-logo"><svg class="rotulo" viewBox="127 180 1895 284" role="img" aria-label="GeSoma"><path d="M 269 181.10 C 255.93 182.57, 240.92 185.95, 227.25 190.50 C 172.02 208.90, 136.69 248.24, 128.47 300.50 C 126.37 313.82, 126.92 340.99, 129.54 353 C 144.92 423.63, 202.36 464, 287.50 464 C 366.15 464, 426.29 426.94, 443.33 367.98 C 447.96 351.97, 449.11 341.44, 448.79 318 L 448.50 296.50 365.25 296.24 L 282 295.98 282 326.49 L 282 357 309.50 357 C 340.91 357, 340.30 356.78, 332.20 364.89 C 312.99 384.10, 270.94 385.19, 248.17 367.07 C 224.14 347.95, 221.58 303.81, 243.10 279.67 C 264.13 256.08, 309.02 253.02, 331.93 273.63 L 337.09 278.27 355.29 277.56 C 375.13 276.78, 389.85 275.28, 414.50 271.53 C 423.30 270.19, 432.63 268.79, 435.25 268.43 C 441.01 267.63, 441.02 267.57, 436.36 255.92 C 419.99 215.02, 374.78 186.86, 316.14 181.03 C 304.17 179.84, 279.89 179.87, 269 181.10 M 465 322 L 465 456 581 456 L 697 456 697 416.50 L 697 377 632 377 L 567 377 567 365 L 567 353 623.50 353 L 680 353 680 319 L 680 285 623.50 285 L 567 285 567 273.50 L 567 262.01 631.75 261.75 L 696.50 261.50 696.76 224.75 L 697.02 188 581.01 188 L 465 188 465 322" fill="var(--gs-ink)" fill-rule="evenodd"/><path d="M 1121 181.61 C 1065.86 189.01, 1019.99 218.75, 1000.41 259.79 C 991.45 278.56, 988.05 293.28, 987.31 316.50 C 986.41 344.83, 989.58 361.96, 999.56 382.87 C 1024.26 434.57, 1078.11 464, 1148.02 464 C 1224.49 464, 1284.63 427.06, 1305.28 367.43 C 1311.24 350.19, 1312.50 341.95, 1312.48 320 C 1312.47 297.40, 1310.66 286.74, 1303.91 269.50 C 1287.07 226.48, 1246.50 195.11, 1193.50 184.10 C 1173.04 179.85, 1142.05 178.78, 1121 181.61 M 799.43 185.97 C 741.11 192.19, 703.96 233.60, 712.39 283 C 717.87 315.17, 744.03 336.16, 789.62 344.98 C 800.67 347.11, 833.54 351.27, 849 352.48 C 866.46 353.85, 874.20 357.85, 874.20 365.53 C 874.20 368.21, 873.46 369.98, 871.57 371.87 L 868.95 374.50 791.47 374.76 L 714 375.03 714 415.43 L 714 455.84 720.25 456.49 C 723.68 456.86, 764.52 456.96, 811 456.72 C 903.58 456.25, 901.76 456.36, 920.38 450.04 C 935.09 445.05, 948.49 436.70, 957.53 426.88 C 984.97 397.07, 987.10 347.36, 962.19 318.11 C 949.16 302.80, 927.76 292.45, 899 287.54 C 894.32 286.74, 877.22 284.92, 861 283.49 C 826.51 280.47, 822.00 279.71, 817.99 276.33 C 813.09 272.21, 814.13 265.53, 820.16 262.41 C 822.92 260.98, 830.92 260.82, 894.63 260.94 L 966 261.08 966 224.18 L 966 187.29 953.75 186.66 C 933.38 185.61, 808.08 185.05, 799.43 185.97 M 1326.24 322.25 L 1326.50 456.50 1378.50 456.50 L 1430.50 456.50 1431 394.25 L 1431.50 332.00 1439.62 346.75 C 1444.08 354.86, 1458.91 382.65, 1472.56 408.50 C 1486.21 434.35, 1497.86 455.84, 1498.44 456.26 C 1499.02 456.68, 1503.46 456.95, 1508.30 456.87 L 1517.11 456.73 1522.46 446.08 C 1533.29 424.48, 1583.07 333.00, 1584 333 C 1584.27 333, 1584.50 360.78, 1584.50 394.75 L 1584.50 456.50 1636 456.50 L 1687.50 456.50 1687.75 322.25 L 1688.00 188 1626.75 188.01 L 1565.50 188.02 1562.10 194.26 C 1558.27 201.29, 1531.68 248.81, 1517.30 274.31 L 1507.83 291.12 1496.33 270.31 C 1490.00 258.86, 1477.18 235.66, 1467.82 218.75 L 1450.81 188 1388.40 188 L 1325.99 188 1326.24 322.25 M 1786.76 195.75 C 1747.33 308.79, 1735.99 340.99, 1724.32 373 C 1707.90 418.05, 1694.97 455.31, 1695.57 455.90 C 1696.72 457.05, 1801.26 457.13, 1802.41 455.98 C 1803.01 455.39, 1806.21 446.48, 1809.53 436.20 L 1815.55 417.50 1856.41 417.50 L 1897.26 417.50 1903.40 437 L 1909.53 456.50 1965.27 456.64 C 1995.92 456.73, 2021.17 456.50, 2021.38 456.14 C 2021.60 455.79, 2015.96 439.52, 2008.86 420 C 2001.77 400.47, 1987.21 359.75, 1976.53 329.50 C 1965.84 299.25, 1952.53 261.67, 1946.95 246 C 1941.37 230.32, 1934.48 210.86, 1931.65 202.75 L 1926.50 188.01 1857.98 188.00 L 1789.46 188 1786.76 195.75 M 1138.97 265.99 C 1130.96 267.26, 1121.33 271.01, 1114.62 275.46 C 1088.37 292.88, 1084.53 335.93, 1107.23 358.33 C 1127.22 378.06, 1164.74 379.42, 1187.60 361.24 C 1210.34 343.15, 1211.79 303.09, 1190.50 281.40 C 1178.49 269.17, 1157.85 263.00, 1138.97 265.99 M 1847.13 317.75 C 1842.07 333.01, 1837.95 345.83, 1837.97 346.25 C 1838.02 347.70, 1875.01 347.13, 1875.57 345.67 C 1875.84 344.95, 1872.18 333.13, 1867.43 319.42 C 1862.68 305.71, 1858.56 293.48, 1858.28 292.25 C 1857.99 291.01, 1857.44 290, 1857.04 290 C 1856.64 290, 1852.18 302.48, 1847.13 317.75" fill="var(--gs-accent)" fill-rule="evenodd"/></svg></h2>
+        <p class="resumen">Una app de entrenamiento y nutrición pensada para acompañarte en el día a día, con la IA como apoyo. Registra cada entreno, incluso sin cobertura en el gimnasio, sigue tu progreso y prepara dietas y rutinas a partir de tus datos reales.</p>
+        <div class="ficha">
+          <div><span class="label">Rol</span><span>Idea, requisitos y dirección; código escrito con Claude Code, que reviso y pruebo</span></div>
+          <div><span class="label">Plataforma</span><span>PWA y app Android (TWA)</span></div>
+          <div><span class="label">Estado</span><span>En uso diario, coste 0 €</span></div>
+        </div>
+      </div>
+      <div class="tira" role="list">
+        <figure role="listitem"><div class="movil"><img src="img/gs-sesion.webp" width="585" height="1266" alt="Sesión en curso: series con kilos, repeticiones y RIR, la primera confirmada y el descanso contando"></div><figcaption>Una serie, dos toques.</figcaption></figure>
+        <figure role="listitem"><div class="movil"><img src="img/gs-progreso.webp" width="585" height="1266" alt="Gráfica de peso con la media de 7 días bajando de 82 a 79,6 kg"></div><figcaption>Peso con media móvil de 7 días.</figcaption></figure>
+        <figure role="listitem"><div class="movil"><img src="img/gs-dieta.webp" width="585" height="1266" alt="Dieta activa con turno, totales de macros del día y acciones de editar y pedir cambios a Claude"></div><figcaption>Dietas por turno de trabajo.</figcaption></figure>
+        <figure role="listitem"><div class="movil"><img src="img/gs-compra.webp" width="585" height="1266" alt="Lista de la compra con lo gastado según el ticket, el coste estimado por tienda y el botón de lista más barata"></div><figcaption>Precios reales y ticket leído.</figcaption></figure>
+        <figure role="listitem"><div class="movil"><img src="img/gs-inicio.webp" width="585" height="1266" alt="Inicio con la plantilla que toca hoy y la racha de semanas"></div><figcaption>Lo que toca hoy, de un vistazo.</figcaption></figure>
+        <figure role="listitem"><div class="movil"><img src="img/gs-permiso.webp" width="585" height="1266" alt="Pantalla de permiso: Claude quiere conectarse a tu GeSoma"></div><figcaption>Permiso OAuth para Claude.</figcaption></figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap cuerpo">
+    <div class="tres">
+      <div><h3>El problema</h3><p>Nació de un caso propio. Mi <em>gymbro</em> y yo llevábamos el seguimiento con herramientas muy básicas: Claude nos generaba hojas de Excel con los ejercicios y los pesos, y PDFs con la dieta según nuestros macros. Cada cambio obligaba a rehacer los archivos, y apuntar las series de cada sesión era un engorro.</p></div>
+      <div><h3>Las restricciones</h3><p>Coste cero de verdad, sin la API de pago de Claude, privacidad total entre cuentas y que registrar una serie no cueste más de dos toques.</p></div>
+      <div><h3>El resultado</h3><p>Una PWA instalable y una app Android propia, con un conector para que Claude trabaje directamente sobre los datos de cada usuario. Hoy la usan a diario sus dos primeros usuarios; cada cuenta está aislada por Row Level Security, así que puede crecer a más gente.</p></div>
+    </div>
+
+    <section class="bloque" aria-labelledby="t-gs-retos">
+      <h3 id="t-gs-retos">Tres problemas técnicos</h3>
+      <div class="retos">
+        <div class="reto"><h4>Offline-first de verdad</h4><p>La interfaz lee siempre de IndexedDB (Dexie), nunca de la red. Las escrituras van a una cola local con <strong>identificadores generados en el cliente</strong> y se suben al volver la conexión; la bajada es incremental y los borrados son lógicos para que lleguen a todos los dispositivos. Todas las páginas se prerenderizan y un service worker propio las sirve sin red.</p></div>
+        <div class="reto"><h4>Claude sin API de pago</h4><p>Primero, Claude devolvía JSON por el menú de compartir de Android, validado con Zod y tolerante con sus variantes de formato. Después se añadió un <strong>servidor MCP</strong> (JSON-RPC sobre HTTP) con <strong>OAuth 2.1</strong>: Claude lee el perfil, el peso y la dieta y guarda la nueva directamente. La privacidad la garantiza Row Level Security en Postgres, no la interfaz.</p></div>
+        <div class="reto"><h4>Precios reales sin acuerdos</h4><p>La lista de la compra sale de la dieta con <strong>precios de Mercadona y Consum</strong> de sus webs. Un algoritmo empareja cada ingrediente con un producto por similitud y elige el envase que menos cuesta para la cantidad necesaria; después reparte la compra entre tiendas para gastar menos. Un ticket fotografiado compara lo estimado con lo pagado.</p></div>
+      </div>
+    </section>
+
+    <section class="bloque" aria-labelledby="t-gs-cifras">
+      <h3 id="t-gs-cifras">En cifras</h3>
+      <div class="cifras">
+        <div><b>0 €</b><span>al mes: Vercel Hobby y Supabase Free</span></div>
+        <div><b>≤ 2</b><span>toques para registrar una serie prevista</span></div>
+        <div><b>114</b><span>tests (Vitest; la capa local con fake-indexeddb)</span></div>
+        <div><b>6</b><span>herramientas MCP para Claude</span></div>
+        <div><b>7</b><span>migraciones SQL versionadas</span></div>
+        <div><b>61</b><span>commits</span></div>
+      </div>
+      <p>Lógica de dominio en funciones puras sin React, reutilizadas tal cual por el servidor MCP. Tema claro y oscuro, objetivos táctiles de 48 px y contraste de 4,5:1 en todas las superficies.</p>
+    </section>
+
+    <section class="bloque" aria-labelledby="t-gs-stack">
+      <h3 id="t-gs-stack">Stack</h3>
+      <ul class="stack">
+        <li>Next.js 16</li><li>TypeScript</li><li>Tailwind 4</li><li>Supabase · Postgres · Auth · RLS</li><li>Dexie · IndexedDB</li><li>Service worker propio</li>
+        <li>Zod</li><li>Recharts</li><li>Model Context Protocol</li><li>OAuth 2.1</li><li>Android TWA</li><li>Vitest</li><li>Vercel</li>
+      </ul>
+    </section>
+
+    <div class="enlaces">
+      <span class="mono">Ahora en uso por sus dos primeros usuarios; la idea es abrirla a más gente. Repositorio privado: lo enseño en una entrevista.</span>
+    </div>
+  </div>
+</article>
+
+<!-- ═════════════ MÉTODO ═════════════ -->
+<section class="wrap metodo" aria-labelledby="t-metodo">
+  <h2 id="t-metodo">Cómo trabajo</h2>
+  <div class="tres">
+    <div><h3>Claude programa, yo dirijo</h3><p>Defino qué hay que construir, las restricciones y cuándo está bien hecho. Claude Code escribe el código; yo lo reviso, lo pruebo en el uso real y pido cambios. Las decisiones quedan escritas (ADR, especificación por fases) y respaldadas por tests.</p></div>
+    <div><h3>Las restricciones guían el diseño</h3><p>Coste cero, sin conexión o datos sensibles no se arreglan al final. Se deciden al principio y dan forma a la arquitectura.</p></div>
+    <div><h3>Pensado para quien lo usa</h3><p>Accesibilidad, móvil y los dos temas desde el primer día. Una herramienta que se usa con prisa tiene que ir rápida.</p></div>
+  </div>
+</section>
+
+<footer class="wrap pie" id="contacto">
+  <h2>Hablemos</h2>
+  <div class="contacto">
+    <span class="correo"><code id="email-pie">eloylagarjaime@gmail.com</code><button class="copiar" type="button" data-copiar="email-pie">Copiar</button></span>
+    <a href="https://github.com/EloyLagar" target="_blank" rel="noopener">github.com/EloyLagar</a>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll("[data-copiar]").forEach((b) => {
+  b.addEventListener("click", () => {
+    const el = document.getElementById(b.dataset.copiar);
+    const texto = el.textContent.trim();
+    const marcar = () => {
+      const r = document.createRange();
+      r.selectNodeContents(el);
+      const s = getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+    };
+    const hecho = () => {
+      b.textContent = "Copiado";
+      setTimeout(() => (b.textContent = "Copiar"), 1800);
+    };
+    try {
+      navigator.clipboard.writeText(texto).then(hecho, marcar);
+    } catch {
+      marcar();
+    }
+  });
+});
+</script>
+</body></html>
